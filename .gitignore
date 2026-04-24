@@ -1,0 +1,14 @@
+# custom project files
+notes.txt
+
+# artifacts
+/release/*
+!/release/.gitkeep
+
+# editor & IDEs
+.vscode/
+*.code-workspace
+
+# operating system files
+.DS_Store
+Thumbs.db
