@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elternrat Tagesschule Altstetterstrasse</title>
+    <meta name="title" content="Elternrat Tagesschule Altstetterstrasse | Gemeinsam für unsere Kinder">
+    <meta name="description" content="Website des Elternrats der Tagesschule Altstetterstrasse in Zürich-Altstetten. Infos zu Events, Agenda und wie Du mitwirken kannst.">
+    <meta name="keywords" content="Elternrat, Altstetterstrasse, Tagesschule, Zürich, Altstetten, Primarschule, Kindergarten, Mitwirkung">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="Deutsch">
+    <meta name="author" content="Elternrat Altstetterstrasse">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://elternrat.mollik.net">
+    <meta property="og:title" content="Elternrat Tagesschule Altstetterstrasse">
+    <meta property="og:description" content="Website des Elternrats der Tagesschule Altstetterstrasse in Zürich-Altstetten. Infos zu Events, Agenda und wie Du mitwirken kannst.">
+    <meta property="og:image" content="https://elternrat.mollik.net/assets/preview.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://elternrat.mollik.net">
+    <meta property="twitter:title" content="Elternrat Tagesschule Altstetterstrasse">
+    <meta property="twitter:description" content="Website des Elternrats der Tagesschule Altstetterstrasse in Zürich-Altstetten. Infos zu Events, Agenda und wie Du mitwirken kannst.">
+    <meta property="twitter:image" content="https://elternrat.mollik.net/assets/preview.jpg">
+    
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": "Elternrat Tagesschule Altstetterstrasse",
+        "url": "https://elternrat.mollik.net",
+        "logo": "https://elternrat.mollik.net/assets/logo-altstetterstrasse.svg",
+        "image": "https://elternrat.mollik.net/assets/preview.jpg",
+        "description": "Elternrat der Tagesschule Altstetterstrasse in Zürich-Altstetten.",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Altstetterstrasse 171",
+            "postalCode": "8048",
+            "addressLocality": "Zürich",
+            "addressRegion": "ZH",
+            "addressCountry": "CH"
+        },
+        "parentOrganization": {
+            "@type": "School",
+            "name": "Tagesschule Altstetterstrasse"
+        }
+    }
+    </script>
+
+    <link rel="icon" href="/assets/favicons/favicon.ico" sizes="48x48">
+    <link rel="icon" href="/assets/favicons/favicon.svg" sizes="any" type="image/svg+xml">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#5BBAD5">
+    
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <!-- navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="#hero" class="nav-logo">
+                <img src="assets/logo-altstetterstrasse.svg" alt="Tagesschule Altstetterstrasse" />
+                <span class="nav-elternrat">Elternrat</span>
+            </a>
+            <ul class="nav-menu">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">Über uns</a></li>
+                <li><a href="#agenda">Agenda</a></li>
+                <li><a href="#testimonials">Mitwirken</a></li>
+                <li><a href="#events">Events</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- hero section -->
+    <section id="hero" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">Gemeinsam für unsere Kinder</h1>
+            <p class="hero-subtitle">Elternrat der Tagesschule Altstetterstrasse</p>
+            <p class="hero-text">Wir gestalten das Schulleben aktiv mit und fördern den Austausch zwischen Eltern,
+                Lehrpersonen und Schulleitung.</p>
+            <a href="#about" class="hero-cta">Mehr erfahren</a>
+        </div>
+        <div class="scroll-indicator">
+            <span></span>
+        </div>
+    </section>
+
+    <!-- about section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">Über uns</h2>
+                    <p>Der Elternrat der Schule Altstetterstrasse ist Ansprechsgremium für Schule und Elternschaft und
+                        setzt sich für eine konstruktive und offene Zusammenarbeit zwischen Erziehungsberechtigten,
+                        Lehrpersonen und Schulleitung ein. Der Elternrat fördert die Kontaktpflege sowie den
+                        Informations- und Meinungsaustausch und trägt so zum gegenseitigen Verständnis zwischen
+                        Elternhaus und Schule bei.</p>
+                </div>
+                <div class="about-image">
+                    <img src="assets/foto-elternrat-alt.jpg" alt="Elternrat Team der Schule Altstetterstrasse">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- agenda section -->
+    <section id="agenda" class="agenda">
+        <div class="container">
+            <h2 class="section-title">Agenda & Termine</h2>
+            <p class="section-subtitle">Alle wichtigen Termine und Veranstaltungen des Elternrats</p>
+
+            <div class="calendar-container">
+                <div id="calendar"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- testimonials section -->
+    <section id="testimonials" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">Stimmen aus unserem Team</h2>
+
+            <div class="testimonials-grid">
+
+                <div class="testimonial-card" data-margin="16.02" data-rotation="1.23" data-from="left">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Ich bin im Elternrat um einen Einblick in den Schulalltag der
+                            Kinder zu bekommen. Man erfährt was aktuell und in der Zukunft läuft. Mir macht es Spaß bei
+                            den Veranstaltungen mitzuwirken und auch eigene Ideen einzubringen. Man lernt andere Eltern
+                            kennen und kann sich austauschen."</p>
+                        <h3>Nana Sagrera Justiz</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-margin="-4.22" data-rotation="-1.27" data-from="right">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Ich bin im Elternrat aktiv, um am Schulleben meines Sohnes
+                            teilzunehmen und mitzuwirken. So bin ich immer auf dem Laufenden. Es fühlt sich ungezwungen
+                            an, da alle motiviert sind. Die Aufgabe des Elternrats finde ich sehr schön und wichtig für
+                            die Kids."</p>
+                        <h3>Samhar Karadoruk</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-margin="18.27" data-rotation="-0.67" data-from="right">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Ich engagiere mich im Elternrat, um an allen Aktivitäten
+                            teilzunehmen, die an der Schule meines Kindes stattfinden. So bin ich ein kleiner Teil
+                            seines Schulalltags. Außerdem freue ich mich darauf, bei allen Aktivitäten mitzuhelfen und
+                            andere Eltern kennenzulernen."</p>
+                        <h3>Anuja Desai</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-margin="-1.43" data-rotation="1.50" data-from="left">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Im Elternrat, um bei Schulveranstaltungen mitzuhelfen, Eltern zu
+                            treffen und jede Veranstaltung erfolgreich zu machen."</p>
+                        <h3>Serena Carlucci</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-margin="6.76" data-rotation="-0.84" data-from="right">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Das Mitwirken im Elternrat ermöglicht mir einen erweiterten Blick
+                            in die Schulwelt meines Kindes."</p>
+                        <h3>Liva Teivane</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-margin="-9.31" data-rotation="-0.91" data-from="left">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Im Elternrat finde ich eine tolle Gruppe aus engagierten Menschen,
+                            die etwas auf die Beine stellen. Es macht Spass, dabei zu sein."</p>
+                        <h3>Corinna Daus</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-margin="4.81" data-rotation="0.66" data-from="left">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Als Mutter ist es mir wichtig, nicht nur zuzuschauen, sondern aktiv
+                            mitzuwirken. Deshalb bin ich im Elternrat. Ich möchte meine Kinder auf ihrem Weg begleiten
+                            und gleichzeitig andere Eltern kennenlernen."</p>
+                        <h3>Blerta Nuhiu</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-margin="17.44" data-rotation="-1.20" data-from="right">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Ich bin im Elternrat, weil ich die Schulzeit meines Sohnes gerne
+                            aktiv miterleben und ein Stück weit mitgestalten möchte. Es macht mir Freude, bei Anlässen
+                            mitzuhelfen, diese mitzuorganisieren und mich mit anderen Eltern auszutauschen. So bekommt
+                            man einen besseren Einblick und ist einfach näher am Schulleben dran."</p>
+                        <h3>Oyen Battaglia</h3>
+                    </div>
+                </div>
+
+                <div class="testimonial-card" data-margin="-5.56" data-rotation="1.79" data-from="right">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">Ich engagiere mich im Elternrat, weil ich die Reise meiner Tochter
+                            im starken Miteinander von Schule, Eltern und Kind aktiv begleiten und mitgestalten möchte."
+                        </p>
+                        <h3>Julian Mollik</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="cta-box">
+                <h3>Möchtest Du auch mitmachen?</h3>
+                <p>Wir freuen uns über neue Gesichter und frische Ideen!<br />Kontaktiere uns gerne.</p>
+                <a href="#contact" class="btn-primary">Jetzt Kontakt aufnehmen</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- events section -->
+    <section id="events" class="events">
+        <div class="events-header-sticky">
+            <div class="container">
+                <h2 class="section-title">Unsere Events</h2>
+                <p class="section-subtitle">Adventssingen, Schülerkino, Leseabend, Erste Hilfe Kurs,
+                    Elternbildungsabend, Lotsenaktion, Besuchsmorgen, ...</p>
+            </div>
+        </div>
+
+        <div class="events-scroll-wrapper">
+            <div class="events-scroll-container">
+                <div class="event-item">
+                    <div class="event-images">
+                        <img src="images/adventssingen-1.jpg" alt="Adventssingen">
+                    </div>
+                    <p class="event-caption">Adventssingen</p>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-images">
+                        <img src="images/besuchsmorgen-1.jpg" alt="Besuchsmorgen der Schule">
+                    </div>
+                    <p class="event-caption">Besuchsmorgen der Schule</p>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-images">
+                        <img src="images/elternbildungsabend-1.jpg" alt="Elternbildungsabend">
+                    </div>
+                    <p class="event-caption">Elternbildungsabend "Faszination Bildschirm"<br />Vortragende Gabriele
+                        Wörlen
+                    </p>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-images event-images-grid">
+                        <div class="grid-image-wrapper">
+                            <img src="images/erste-hilfe-kurs-1.jpg" alt="Erste Hilfe Kurs">
+                        </div>
+                        <div class="grid-image-wrapper">
+                            <img src="images/erste-hilfe-kurs-2.jpg" alt="Erste Hilfe Kurs">
+                        </div>
+                        <div class="grid-image-wrapper">
+                            <img src="images/erste-hilfe-kurs-3.jpg" alt="Erste Hilfe Kurs">
+                        </div>
+                        <div class="grid-image-wrapper">
+                            <img src="images/erste-hilfe-kurs-4.jpg" alt="Erste Hilfe Kurs">
+                        </div>
+                    </div>
+                    <p class="event-caption">Erste Hilfe Kurs</p>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-images">
+                        <img src="images/schuelerkino-1.jpg" alt="Kinoabend im Schulhaus">
+                    </div>
+                    <p class="event-caption">Kinoabend im Schulhaus</p>
+                </div>
+
+                <div class="event-item">
+                    <div class="event-images event-images-double">
+                        <div class="grid-image-wrapper">
+                            <img src="images/schulstart-aktion-1.jpg" alt="Lotsenaktion zum Schulstart">
+                        </div>
+                        <div class="grid-image-wrapper">
+                            <img src="images/schulstart-aktion-2.jpg" alt="Lotsenaktion zum Schulstart">
+                        </div>
+                    </div>
+                    <p class="event-caption">Lotsenaktion zum Schulstart</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- contact/footer section -->
+    <footer id="contact" class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Kontakt</h3>
+                    <p>Hast Du Fragen oder Anregungen?</p>
+                    <p>Wir freuen uns auf Deine Nachricht!</p>
+                    <a href="mailto:elternrat@mollik.net" class="contact-link">
+                        elternrat@mollik.net
+                        <span class="speech-bubble">actual email address tbd</span>
+                    </a>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Tagesschule Altstetterstrasse</h3>
+                    <p>Altstetterstrasse 171</p>
+                    <p>8048 Zürich</p>
+                    <p>Schweiz</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://www.stadt-zuerich.ch/schulen/de/altstetterstrasse.html">Tagesschule
+                                Altstetterstrasse</a></li>
+                        <li><a
+                                href="https://www.stadt-zuerich.ch/de/bildung/volksschule/schulorganisation/elternmitwirkung.html">Schulamt,
+                                Elternmitwirkung</a></li>
+                        <li><a href="https://www.eltern-zuerich.ch/">Elternorganisation Stadt Zürich</a></li>
+                        <li><a href="http://www.elternmitwirkung.ch/">Fachstelle Elternmitwirkung</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Elternrat Tagesschule Altstetterstrasse. Alle Rechte
+                    vorbehalten. Version <span id="current-version"></span>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- GSAP scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <!-- FullCalendar scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+
+    <!-- custom scripts -->
+    <script src="calendar-init.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
