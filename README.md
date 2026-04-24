@@ -28,6 +28,14 @@ The website is intentionally built without heavy frameworks to ensure long-term 
 - `/fonts`: Local webfonts (Helvetica Neue LT)
 - `/release`: The production-ready distribution folder (generated automatically)
 
+### AI-Collaborative Development
+
+This project was built using a hybrid approach of traditional engineering and state-of-the-art AI collaboration
+
+- **Claude Code & Gemini:** Utilized for rapid prototyping, complex GSAP animation logic, and the implementation of the custom release system
+- **Traditional Coding:** All AI-generated logic was manually reviewed, refined, and bug-fixed to ensure high performance and cross-browser stability
+- **Problem Solving:** AI was used as a pair-programmer to tackle edge cases in mobile caching and responsive layout behavior
+
 ---
 
 ## 🚀 Release Process
