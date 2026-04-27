@@ -57,10 +57,11 @@ cp "$SRC_INDEX" "$RELEASE_DIR/index.html"
 # -----------------------------------------------------------------
 # 4. COPY ASSET DIRECTORIES
 # -----------------------------------------------------------------
-echo "   - copying asset directories (assets, fonts, images) ..."
+echo "   - copying asset directories (assets, fonts, images, libs) ..."
 cp -R assets "$RELEASE_DIR/"
 cp -R fonts "$RELEASE_DIR/"
 cp -R images "$RELEASE_DIR/"
+cp -R libs "$RELEASE_DIR/"
 
 # -----------------------------------------------------------------
 # 5. UPDATE REFERENCES (INSIDE RELEASE FOLDER ONLY)
