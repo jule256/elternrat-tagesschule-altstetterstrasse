@@ -19,6 +19,47 @@ const version = 'developer-preview';
 document.getElementById('current-version').textContent = version;
 
 // ===================================
+// MOBILE BURGER MENU
+// ===================================
+
+const burgerMenu = document.querySelector('.burger-menu');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+
+// toggle burger menu
+burgerMenu.addEventListener('click', () => {
+    const isActive = burgerMenu.classList.contains('active');
+
+    if (isActive) {
+        closeMobileMenu();
+    } else {
+        burgerMenu.classList.add('active');
+        mobileMenuOverlay.classList.add('active');
+        mobileMenuOverlay.classList.remove('closing');
+        document.body.style.overflow = 'hidden';
+    }
+});
+
+// close menu when clicking on a link
+mobileMenuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        closeMobileMenu();
+    });
+});
+
+function closeMobileMenu() {
+    burgerMenu.classList.remove('active');
+    mobileMenuOverlay.classList.add('closing');
+    mobileMenuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+
+    setTimeout(() => {
+        // remove closing class after animation completes
+        mobileMenuOverlay.classList.remove('closing');
+    }, 200);
+}
+
+// ===================================
 // SHRINKING NAVIGATION ON SCROLL
 // ===================================
 
