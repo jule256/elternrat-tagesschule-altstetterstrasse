@@ -23,7 +23,7 @@
     <meta property="twitter:title" content="Elternrat Tagesschule Altstetterstrasse">
     <meta property="twitter:description" content="Website des Elternrats der Tagesschule Altstetterstrasse in Zürich-Altstetten. Infos zu Events, Agenda und wie Du mitwirken kannst.">
     <meta property="twitter:image" content="https://elternrat.mollik.net/assets/preview.jpg">
-    
+
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
@@ -52,9 +52,9 @@
     <link rel="icon" href="/assets/favicons/favicon.svg" sizes="any" type="image/svg+xml">
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/favicons/apple-touch-icon.png">
     <link rel="mask-icon" href="/assets/favicons/safari-pinned-tab.svg" color="#5BBAD5">
-    
+
     <link rel="stylesheet" href="styles.css">
-    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.css" rel="stylesheet">
+    <link href="libs/fullcalendar/index.global.min.css" rel="stylesheet">
 </head>
 
 <body>
@@ -65,12 +65,32 @@
                 <img src="assets/logo-altstetterstrasse.svg" alt="Tagesschule Altstetterstrasse" />
                 <span class="nav-elternrat">Elternrat</span>
             </a>
+
+            <!-- Burger Menu Button (mobile only) -->
+            <button class="burger-menu" aria-label="Menu">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+
+            <!-- desktop navigation menu -->
             <ul class="nav-menu">
-                <li><a href="#hero">Home</a></li>
-                <li><a href="#about">Über uns</a></li>
-                <li><a href="#agenda">Agenda</a></li>
-                <li><a href="#testimonials">Mitwirken</a></li>
-                <li><a href="#events">Events</a></li>
+                <li><a href="#hero" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">Über uns</a></li>
+                <li><a href="#agenda" class="nav-link">Agenda</a></li>
+                <li><a href="#testimonials" class="nav-link">Mitwirken</a></li>
+                <li><a href="#events" class="nav-link">Events</a></li>
+            </ul>
+        </div>
+
+        <!-- mobile menu overlay -->
+        <div class="mobile-menu-overlay">
+            <ul class="mobile-menu">
+                <li><a href="#hero" class="mobile-menu-link">Home</a></li>
+                <li><a href="#about" class="mobile-menu-link">Über uns</a></li>
+                <li><a href="#agenda" class="mobile-menu-link">Agenda</a></li>
+                <li><a href="#testimonials" class="mobile-menu-link">Mitwirken</a></li>
+                <li><a href="#events" class="mobile-menu-link">Events</a></li>
             </ul>
         </div>
     </nav>
@@ -224,8 +244,7 @@
         <div class="events-header-sticky">
             <div class="container">
                 <h2 class="section-title">Unsere Events</h2>
-                <p class="section-subtitle">Adventssingen, Schülerkino, Leseabend, Erste Hilfe Kurs,
-                    Elternbildungsabend, Lotsenaktion, Besuchsmorgen, ...</p>
+                <p class="section-subtitle">Bilder von Veranstaltungen, die der Elternrat (mit)organisiert</p>
             </div>
         </div>
 
@@ -337,11 +356,11 @@
     </footer>
 
     <!-- GSAP scripts -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="libs/gsap/gsap.min.js"></script>
+    <script src="libs/gsap/ScrollTrigger.min.js"></script>
 
     <!-- FullCalendar scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.11/index.global.min.js"></script>
+    <script src="libs/fullcalendar/index.global.min.js"></script>
 
     <!-- custom scripts -->
     <script src="calendar-init.js"></script>
