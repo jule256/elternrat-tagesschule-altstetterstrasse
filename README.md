@@ -18,7 +18,7 @@ The website is intentionally built without heavy frameworks to ensure long-term 
 
 - **HTML5 / CSS3:** Uses CSS Variables for consistent branding and spacing
 - **JavaScript (Vanilla):** Native logic for core interactions
-- **[GSAP (GreenSock)](https://gsap.com/):** Industrial-grade animation library (loaded via CDN)
+- **[GSAP (GreenSock)](https://gsap.com/):** Industrial-grade animation library
 - **[FullCalendar](https://fullcalendar.io/):** Robust library for rendering the event list
 
 ### Directory Structure
@@ -67,6 +67,53 @@ Mobile browsers (WhatsApp, Safari, Chrome) cache CSS and JS files aggressively. 
 
 4. **Deployment:**
     Upload the contents of the /release folder to your web server via SFTP
+
+---
+
+## 📦 Library Management
+
+The website hosts third-party libraries locally (in `/libs`) to reduce CDN dependencies and enable offline development. The `bin/library-update.sh` script automates checking for updates and downloading newer versions.
+
+### Managed Libraries
+
+- **GSAP** (GreenSock Animation Platform) + ScrollTrigger plugin
+- **FullCalendar** (calendar/agenda component)
+
+### How to check for updates:
+
+```bash
+./bin/library-update.sh
+```
+
+### Semantic Versioning Policy
+
+The script respects semantic versioning to prevent breaking changes:
+
+- **Patch updates (e.g., 6.1.20 → 6.1.21):** Auto-downloaded (bugfixes only)
+- **Minor updates (e.g., 6.1.x → 6.2.0):** Manual approval required
+- **Major updates (e.g., 6.x.x → 7.0.0):** Manual approval required
+
+If a minor or major update is available, the script will display instructions:
+
+```bash
+# for minor updates
+GSAP_MINOR_UPDATE=yes ./bin/library-update.sh
+
+# for major updates
+GSAP_MAJOR_UPDATE=yes ./bin/library-update.sh
+```
+
+Replace `GSAP` with `FC` for FullCalendar updates.
+
+### Force re-download
+
+To re-download libraries even when already up-to-date:
+
+```bash
+./bin/library-update.sh --force
+```
+
+---
 
 ## 📅 Updating the Agenda
 
