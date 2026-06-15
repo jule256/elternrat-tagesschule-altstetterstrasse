@@ -56,8 +56,6 @@
     /* mobile:  2.058 = zoomed-size (350px) / grid-image-height (170px) */
     --event-grid-scale: 2.05;
 
-    --speech-bubble-color: #FFC107;
-
     /* z-index layers */
     --z-mobile-menu-overlay: 10;
 }
@@ -1009,32 +1007,6 @@ body {
 
 .contact-link:hover {
     background: var(--primary-color-dark);
-}
-
-.speech-bubble {
-    position: absolute;
-    top: 100%;
-    left: 75%;
-    transform: translateX(-50%);
-    margin-top: 10px;
-    padding: 8px 12px;
-    background: var(--speech-bubble-color);
-    color: #1A1A1A;
-    font-size: 0.85rem;
-    font-weight: 600;
-    white-space: nowrap;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-}
-
-.speech-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    border: 8px solid transparent;
-    border-bottom-color: var(--speech-bubble-color);
 }
 
 .footer-links {
