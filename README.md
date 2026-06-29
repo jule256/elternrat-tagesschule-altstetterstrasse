@@ -1,6 +1,10 @@
 # Parent Council Website - Tagesschule Altstetterstrasse
 
-This is the official website for the Parent Council (Elternrat) of the Tagesschule Altstetterstrasse in Zurich-Altstetten. The site serves as representation of the Parent Council, highlighting upcoming events (co-)organized by the Parent Council and encouraging active participation in the school community.
+This is the official website for the Parent Council (Elternrat) of the Tagesschule Altstetterstrasse in Zürich Altstetten. The site serves as representation of the Parent Council, highlighting upcoming events (co-)organized by the Parent Council and encouraging active participation in the school community.
+
+<center> 
+🌏 <a href="https://www.elternrat-altstetterstrasse.ch/">www.elternrat-altstetterstrasse.ch</a> 🌍
+</center> 
 
 ## ✨ Features
 
