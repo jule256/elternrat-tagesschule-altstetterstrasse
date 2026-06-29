@@ -141,3 +141,21 @@ JSON
 
 Created for the Parent Council of Tagesschule Altstetterstrasse.
 For technical inquiries or access to the source repository, please contact the administrator.
+
+## 📬 Shared Email Inbox
+
+The website features an email contact option via [kontakt@elternrat-altstetterstrasse.ch](mailto:kontakt@elternrat-altstetterstrasse.ch) with a [Roundcube web-interface](https://webmail.elternrat-altstetterstrasse.ch).
+
+Every email sent to the contact email-address triggers a Roundcube notification using the Roundcube "Filters" functionality to alert various people of the Parent Council in their personal inbox. This way they know there is a new email in the shared inbox and can use the web-interface to read and reply.
+
+Here is an example [filter configuration](https://srv77.tophost.ch:2096/cpsess5289712751/3rdparty/roundcube/?_task=settings&_action=plugin.managesieve) of this functionality
+
+```
+# rule:[notification about new emails to everyone]
+if true
+{
+	notify :importance "2" :from "kontakt@elternrat-altstetterstrasse.ch" :message "INFO: Neue Email an den Elternrat, Name1" "mailto:name1@example.com?body=Lieber%20Name1%2C%0A%0Aes%20gibt%20eine%20neue%20Email-Nachricht%20an%20den%20Elternrat.%20Logge%20dich%20auf%20https%3A%2F%2Fwebmail.elternrat-altstetterstrasse.ch%20ein%20um%20sie%20zu%20lesen%20und%20gegebenenfalls%20zu%20antworten.%0A%0AName2%20und%20Name3%20wurden%20ebenfalls%20benachrichtigt.";
+	notify :importance "2" :from "kontakt@elternrat-altstetterstrasse.ch" :message "INFO: Neue Email an den Elternrat, Name2" "mailto:name2@gmx.ch?body=Liebe%20Name2%2C%0A%0Aes%20gibt%20eine%20neue%20Email-Nachricht%20an%20den%20Elternrat.%20Logge%20dich%20auf%20https%3A%2F%2Fwebmail.elternrat-altstetterstrasse.ch%20ein%20um%20sie%20zu%20lesen%20und%20gegebenenfalls%20zu%20antworten.%0A%0AName1%20und%20Name3%20wurden%20ebenfalls%20benachrichtigt.";
+	notify :importance "2" :from "kontakt@elternrat-altstetterstrasse.ch" :message "INFO: Neue Email an den Elternrat, Name3" "mailto:name3@gmail.com?body=Liebe%20Name3%2C%0A%0Aes%20gibt%20eine%20neue%20Email-Nachricht%20an%20den%20Elternrat.%20Logge%20dich%20auf%20https%3A%2F%2Fwebmail.elternrat-altstetterstrasse.ch%20ein%20um%20sie%20zu%20lesen%20und%20gegebenenfalls%20zu%20antworten.%0A%0AName1%20und%20Name2%20wurden%20ebenfalls%20benachrichtigt.";
+}
+```
