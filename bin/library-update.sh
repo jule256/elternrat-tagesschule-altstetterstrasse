@@ -99,7 +99,11 @@ elif [[ "$UPDATE_TYPE" == "patch" ]] || [[ "$FORCE" == true ]]; then
     curl -s "https://cdnjs.cloudflare.com/ajax/libs/gsap/${GSAP_LATEST}/ScrollTrigger.min.js" \
         -o "$LIBS_DIR/gsap/ScrollTrigger.min.js"
 
-    echo -e "  ${GREEN}✓ downloaded GSAP ${GSAP_LATEST}${NC}"
+    # download MotionPathPlugin.min.js (kept in sync with core GSAP version)
+    curl -s "https://cdn.jsdelivr.net/npm/gsap@${GSAP_LATEST}/dist/MotionPathPlugin.min.js" \
+        -o "$LIBS_DIR/gsap/MotionPathPlugin.min.js"
+
+    echo -e "  ${GREEN}✓ downloaded GSAP ${GSAP_LATEST} (core, ScrollTrigger, MotionPathPlugin)${NC}"
 
     # update version in this script
     sed -i.bak "s/GSAP_CURRENT_VERSION=\".*\"/GSAP_CURRENT_VERSION=\"${GSAP_LATEST}\"/" "$0"
@@ -114,6 +118,7 @@ if [[ "$UPDATE_TYPE" == "major" ]] && [[ "$GSAP_MAJOR_UPDATE" == "yes" ]]; then
     mkdir -p "$LIBS_DIR/gsap"
     curl -s "https://cdnjs.cloudflare.com/ajax/libs/gsap/${GSAP_LATEST}/gsap.min.js" -o "$LIBS_DIR/gsap/gsap.min.js"
     curl -s "https://cdnjs.cloudflare.com/ajax/libs/gsap/${GSAP_LATEST}/ScrollTrigger.min.js" -o "$LIBS_DIR/gsap/ScrollTrigger.min.js"
+    curl -s "https://cdn.jsdelivr.net/npm/gsap@${GSAP_LATEST}/dist/MotionPathPlugin.min.js" -o "$LIBS_DIR/gsap/MotionPathPlugin.min.js"
     sed -i.bak "s/GSAP_CURRENT_VERSION=\".*\"/GSAP_CURRENT_VERSION=\"${GSAP_LATEST}\"/" "$0"
     rm "${0}.bak" 2>/dev/null || true
     echo -e "  ${GREEN}✓ updated to GSAP ${GSAP_LATEST}${NC}"
@@ -122,6 +127,7 @@ elif [[ "$UPDATE_TYPE" == "minor" ]] && [[ "$GSAP_MINOR_UPDATE" == "yes" ]]; the
     mkdir -p "$LIBS_DIR/gsap"
     curl -s "https://cdnjs.cloudflare.com/ajax/libs/gsap/${GSAP_LATEST}/gsap.min.js" -o "$LIBS_DIR/gsap/gsap.min.js"
     curl -s "https://cdnjs.cloudflare.com/ajax/libs/gsap/${GSAP_LATEST}/ScrollTrigger.min.js" -o "$LIBS_DIR/gsap/ScrollTrigger.min.js"
+    curl -s "https://cdn.jsdelivr.net/npm/gsap@${GSAP_LATEST}/dist/MotionPathPlugin.min.js" -o "$LIBS_DIR/gsap/MotionPathPlugin.min.js"
     sed -i.bak "s/GSAP_CURRENT_VERSION=\".*\"/GSAP_CURRENT_VERSION=\"${GSAP_LATEST}\"/" "$0"
     rm "${0}.bak" 2>/dev/null || true
     echo -e "  ${GREEN}✓ updated to GSAP ${GSAP_LATEST}${NC}"
@@ -134,7 +140,7 @@ echo ""
 # ===================================
 echo -e "${YELLOW}checking FullCalendar ...${NC}"
 
-FC_CURRENT_VERSION="6.1.20"
+FC_CURRENT_VERSION="7.0.2"
 FC_API_URL="https://registry.npmjs.org/fullcalendar/latest"
 FC_LATEST=$(curl -s "$FC_API_URL" | grep -o '"version":"[^"]*' | head -1 | cut -d'"' -f4)
 
