@@ -372,6 +372,18 @@ gsap.from('.footer-section', {
     }
 });
 
+gsap.from('.footer-share', {
+    opacity: 0,
+    y: 20,
+    duration: 0.6,
+    delay: 0.6,
+    scrollTrigger: {
+        trigger: '.footer',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+    }
+});
+
 // ===================================
 // NAVIGATION SHADOW ON SCROLL
 // ===================================
@@ -393,10 +405,11 @@ window.addEventListener('scroll', () => {
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
         const targetId = this.getAttribute('href');
 
-        if (targetId === '#') return;
+        if (targetId === '#' || !targetId.startsWith('#')) return;
+
+        e.preventDefault();
 
         const targetElement = document.querySelector(targetId);
 
@@ -437,3 +450,47 @@ const debouncedRefresh = debounce(() => {
 }, 300);
 
 window.addEventListener('resize', debouncedRefresh);
+
+// ===================================
+// FOOTER SHARE
+// ===================================
+
+(function initShare() {
+    const pageUrl = window.location.href;
+    const pageTitle = document.title || 'Elternrat Tagesschule Altstetterstrasse';
+
+    const shareText = pageTitle + '\n' + pageUrl;
+
+    const whatsappBtn = document.getElementById('share-whatsapp');
+    if (whatsappBtn) {
+        whatsappBtn.href = 'https://api.whatsapp.com/send?text=' + encodeURIComponent(shareText);
+    }
+
+    const emailBtn = document.getElementById('share-email');
+    if (emailBtn) {
+        emailBtn.href = 'mailto:?subject=' + encodeURIComponent(pageTitle) + '&body=' + encodeURIComponent(shareText);
+    }
+
+    const nativeBtn = document.getElementById('share-native');
+    if (nativeBtn && navigator.share) {
+        nativeBtn.addEventListener('click', function () {
+            navigator.share({ title: pageTitle, url: pageUrl }).catch(function () {});
+        });
+    }
+
+    const copyBtn = document.getElementById('share-copy');
+    if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+            navigator.clipboard.writeText(pageUrl).then(function () {
+                copyBtn.classList.add('copied');
+                var label = copyBtn.querySelector('.copy-label');
+                var originalText = label.textContent;
+                label.textContent = 'Kopiert!';
+                setTimeout(function () {
+                    copyBtn.classList.remove('copied');
+                    label.textContent = originalText;
+                }, 2000);
+            });
+        });
+    }
+})();
