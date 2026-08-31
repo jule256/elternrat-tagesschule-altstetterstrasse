@@ -31,6 +31,7 @@ The website is intentionally built without heavy frameworks to ensure long-term 
 - `/images`: High-resolution photography for event sections
 - `/fonts`: Local webfonts (Helvetica Neue LT)
 - `/release`: The production-ready distribution folder (generated automatically)
+- `/qr`: The QR redirect + visit-tracking script (`index.php`)
 
 ### AI-Collaborative Development
 
@@ -135,6 +136,40 @@ JSON
     }
   }
 ]
+```
+
+## 📷 QR Redirect & Visit Tracking
+
+A short URL (`https://www.elternrat-altstetterstrasse.ch/qr`) is used on printed QR codes. When someone scans the code, a small PHP script logs the visit to a CSV file and then redirects the visitor to the homepage with a `302` response.
+
+<div align="center">
+<img src="assets/qr/qr-github.png" alt="QR code: https://www.elternrat-altstetterstrasse.ch/qr?src=github" width="220" />
+</div>
+
+
+### How it works
+
+The script lives in `/qr/index.php`. For every hit it:
+
+- appends one CSV line with the UTC timestamp, browser `user-agent`, HTTP `referer`, an optional `src` channel tag, and an anonymized session id
+- redirects the visitor to `/` (the homepage)
+
+### Log file(s)
+
+Both the live and preview environments write to the same shared data directory (outside the web root, so the logs are not directly downloadable), but each uses its own file:
+
+- **Live (`www`):** `.../elternrat-altstetterstrasse.ch-data/qr/visits-www.csv`
+- **Preview (`testing`):** `.../elternrat-altstetterstrasse.ch-data/qr/visits-testing.csv`
+
+The target environment is detected from the request hostname (`testing.` prefix → `testing`, otherwise → `www`).
+
+### Tracking different channels
+
+To tell apart different QR codes (e.g. one on a flyer vs. one on a poster), append a `src` tag to the QR URL:
+
+```
+https://www.elternrat-altstetterstrasse.ch/qr?src=flyer
+https://www.elternrat-altstetterstrasse.ch/qr?src=plakat
 ```
 
 ## 📜 License & Contact
