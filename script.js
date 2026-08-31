@@ -2,7 +2,7 @@
 // GSAP ScrollTrigger Registration and Configuration
 // ==================================================
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 const mm = gsap.matchMedia();
 
 // ===================================
@@ -213,6 +213,104 @@ mm.add({
 });
 
 // ===================================
+// SMARTPHONE-FREI SECTION ANIMATIONS
+// ===================================
+
+gsap.from('.smartphone-frei .section-title, .smartphone-frei .section-subtitle', {
+    opacity: 0,
+    y: 30,
+    duration: 0.8,
+    stagger: 0.2,
+    scrollTrigger: {
+        trigger: '.smartphone-frei',
+        start: 'top 70%',
+        toggleActions: 'play none none reverse'
+    }
+});
+
+gsap.from('.sfk-content p', {
+    opacity: 0,
+    y: 20,
+    duration: 0.8,
+    stagger: 0.15,
+    scrollTrigger: {
+        trigger: '.sfk-content',
+        start: 'top 75%',
+        toggleActions: 'play none none reverse'
+    }
+});
+
+mm.add({
+    isDesktop: `(min-width: ${desktopMobileBreakpoint + 1}px)`,
+    isMobile: `(max-width: ${desktopMobileBreakpoint}px)`
+}, context => {
+    let { isDesktop } = context.conditions;
+
+    gsap.from('.sfk-image', {
+        opacity: 0,
+        ease: 'circ.out',
+        x: isDesktop ? '-100vw' : '-20vw',
+        scrollTrigger: {
+            trigger: '.sfk-intro',
+            start: isDesktop ? 'top bottom' : 'top 50%',
+            end: 'top-=130px top',
+            scrub: 1,
+            id: isDesktop ? 'sfk-image-desktop' : 'sfk-image-mobile'
+        }
+    });
+});
+
+// playful phone follows a wavy path on the right, scrubbed with scroll
+gsap.timeline({
+    scrollTrigger: {
+        trigger: '#smartphone-frei',
+        start: 'top bottom',
+        end: 'bottom top',
+        scrub: 1,
+        id: 'sfk-phone-scroll'
+    }
+})
+    .to('.sfk-phone', {
+        opacity: 1,
+        duration: 0.08,
+        ease: 'none'
+    }, 0)
+    .to('.sfk-phone', {
+        duration: 1,
+        ease: 'none',
+        motionPath: {
+            path: '#sfk-phone-path',
+            align: '#sfk-phone-path',
+            alignOrigin: [0.5, 0.5],
+            autoRotate: true
+        }
+    }, 0.08);
+
+gsap.from('.sfk-download-card', {
+    opacity: 0,
+    y: 30,
+    scale: 0.95,
+    duration: 0.6,
+    stagger: 0.1,
+    scrollTrigger: {
+        trigger: '.sfk-downloads',
+        start: 'top 80%',
+        toggleActions: 'play none none reverse'
+    }
+});
+
+gsap.from('.sfk-cta', {
+    opacity: 0,
+    y: 20,
+    duration: 0.8,
+    scrollTrigger: {
+        trigger: '.sfk-cta',
+        start: 'top 85%',
+        toggleActions: 'play none none reverse'
+    }
+});
+
+// ===================================
 // AGENDA SECTION ANIMATIONS
 // ===================================
 
@@ -262,7 +360,7 @@ testimonialCards.forEach((card, index) => {
     const finalMargin = parseFloat(card.dataset.margin);
     const finalRotation = parseFloat(card.dataset.rotation);
     const delay = index * 0.15;
-    
+
     // apply margin to card
     card.style.margin = `${finalMargin}px`;
 
