@@ -10,6 +10,7 @@ This is the official website for the Parent Council (Elternrat) of the Tagesschu
 
 - **Modern One-Pager:** A clean, single-page scroll experience.
 - **GSAP ScrollTrigger:** High-end parallax effects and layered pinning animations for a professional feel.
+- **Scroll-Driven Motion Path:** A playful smartphone image follows a wavy path as you scroll through the "Smartphone-freie Kindheit" section (desktop only).
 - **FullCalendar Integration:** A dynamic agenda powered by a local `events.json` file.
 - **Responsive Design:** Optimized specifically for smartphones to ensure accessibility via class chat links.
 - **Cache-Busting & Build System:** A custom script ensures that all updates are immediately visible on mobile devices.
@@ -22,7 +23,7 @@ The website is intentionally built without heavy frameworks to ensure long-term 
 
 - **HTML5 / CSS3:** Uses CSS Variables for consistent branding and spacing
 - **JavaScript (Vanilla):** Native logic for core interactions
-- **[GSAP (GreenSock)](https://gsap.com/):** Industrial-grade animation library
+- **[GSAP (GreenSock)](https://gsap.com/):** Industrial-grade animation library (with ScrollTrigger & MotionPathPlugin)
 - **[FullCalendar](https://fullcalendar.io/):** Robust library for rendering the event list
 
 ### Directory Structure
@@ -80,7 +81,7 @@ The website hosts third-party libraries locally (in `/libs`) to reduce CDN depen
 
 ### Managed Libraries
 
-- **GSAP** (GreenSock Animation Platform) + ScrollTrigger plugin
+- **GSAP** (GreenSock Animation Platform) + ScrollTrigger plugin + MotionPathPlugin
 - **FullCalendar** (calendar/agenda component)
 
 ### How to check for updates:
