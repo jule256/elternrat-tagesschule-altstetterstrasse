@@ -375,14 +375,21 @@ if (eventsScrollWrapper && eventItems.length) {
     }
 
     function updateActiveEvent() {
-        const wrapperRect = eventsScrollWrapper.getBoundingClientRect();
-        const center = wrapperRect.left + wrapperRect.width / 2;
+        const scrollLeft = eventsScrollWrapper.scrollLeft;
+        const wrapper = eventsScrollWrapper;
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const maxTarget = wrapper.scrollWidth - wrapper.clientWidth;
         let closest = 0;
         let closestDistance = Infinity;
 
         eventItems.forEach((item, index) => {
-            const rect = item.getBoundingClientRect();
-            const distance = Math.abs(rect.left + rect.width / 2 - center);
+            const itemRect = item.getBoundingClientRect();
+            const target = Math.max(0, Math.min(
+                scrollLeft + (itemRect.left - wrapperRect.left) -
+                (wrapperRect.width - itemRect.width) / 2,
+                maxTarget
+            ));
+            const distance = Math.abs(target - scrollLeft);
             if (distance < closestDistance) {
                 closestDistance = distance;
                 closest = index;
