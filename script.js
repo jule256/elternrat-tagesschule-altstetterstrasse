@@ -557,11 +557,27 @@ window.addEventListener('resize', debouncedRefresh);
 
     const nativeBtn = document.getElementById('share-native');
     if (nativeBtn && navigator.share) {
+        if (window.matchMedia('(pointer: coarse)').matches) {
+            nativeBtn.classList.add('available');
+        }
+
         nativeBtn.addEventListener('click', function () {
-            navigator.share({ title: pageTitle, url: pageUrl }).catch(function () { });
+            // never invoke navigator.share() on fine-pointer (desktop) devices:
+            // desktop Chrome can kill the renderer there instead of rejecting,
+            // and no .catch() can recover from a killed process.
+            if (!navigator.share || !window.matchMedia('(pointer: coarse)').matches) {
+                nativeBtn.classList.remove('available');
+                nativeBtn.style.display = 'none';
+                return;
+            }
+            navigator.share({ title: pageTitle, url: pageUrl })
+                .catch(function (err) {
+                    if (err.name === 'NotAllowedError' || err.name === 'TypeError') {
+                        nativeBtn.classList.remove('available');
+                        nativeBtn.style.display = 'none';
+                    }
+                });
         });
-    } else if (nativeBtn) {
-        nativeBtn.style.display = 'none';
     }
 
     const copyBtn = document.getElementById('share-copy');
