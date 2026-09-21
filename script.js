@@ -262,7 +262,7 @@ testimonialCards.forEach((card, index) => {
     const finalMargin = parseFloat(card.dataset.margin);
     const finalRotation = parseFloat(card.dataset.rotation);
     const delay = index * 0.15;
-    
+
     // apply margin to card
     card.style.margin = `${finalMargin}px`;
 
@@ -303,57 +303,148 @@ gsap.from('.cta-box', {
 });
 
 // ===================================
-// EVENTS SECTION - HORIZONTAL SCROLL
+// EVENTS SECTION - NATIVE HORIZONTAL SCROLL
 // ===================================
 
-const eventsScrollContainer = document.querySelector('.events-scroll-container');
-const eventsHeaderSticky = document.querySelector('.events-header-sticky');
+const eventsScrollWrapper = document.querySelector('.events-scroll-wrapper');
+const eventItems = gsap.utils.toArray('.event-item');
+const eventsDots = document.querySelector('.events-dots');
+const eventsPrev = document.querySelector('.events-arrow-prev');
+const eventsNext = document.querySelector('.events-arrow-next');
 
-if (eventsScrollContainer) {
-    const containerPadding = 100;
+let currentEventIndex = 0;
 
-    const getScrollWidth = () => {
-        return eventsScrollContainer.scrollWidth - window.innerWidth + containerPadding;
-    };
-
-    const getNavHeight = () => {
-        return document.querySelector('.nav').offsetHeight;
-    };
-
-    // fade in header earlier before horizontal scroll starts
-    ScrollTrigger.create({
-        trigger: '.events-scroll-wrapper',
-        start: () => `top ${getNavHeight() + 120}px`,
-        end: () => `+=${getScrollWidth()}`,
-        invalidateOnRefresh: true,
-        onEnter: () => {
-            gsap.to(eventsHeaderSticky, { opacity: 1, duration: 0.3 });
-        },
-        onLeave: () => {
-            gsap.to(eventsHeaderSticky, { opacity: 0, duration: 0.3 });
-        },
-        onEnterBack: () => {
-            gsap.to(eventsHeaderSticky, { opacity: 1, duration: 0.3 });
-        },
-        onLeaveBack: () => {
-            gsap.to(eventsHeaderSticky, { opacity: 0, duration: 0.3 });
-        }
+if (eventsScrollWrapper && eventItems.length) {
+    eventItems.forEach((item, index) => {
+        const dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'events-dot';
+        dot.setAttribute('aria-label', 'Event ' + (index + 1));
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => scrollToEvent(index));
+        eventsDots.appendChild(dot);
     });
 
-    // horizontal scroll animation
-    gsap.to(eventsScrollContainer, {
-        x: () => -getScrollWidth(),
-        ease: 'none',
-        scrollTrigger: {
-            trigger: '.events-scroll-wrapper',
-            start: () => `top ${getNavHeight()}px`,
-            end: () => `+=${getScrollWidth()}`,
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true
+    const eventDots = gsap.utils.toArray('.events-dot');
+
+    let eventsScrollAnimating = false;
+
+    function scrollToEvent(index) {
+        index = Math.max(0, Math.min(index, eventItems.length - 1));
+        currentEventIndex = index;
+
+        if (eventsScrollAnimating) return;
+
+        const wrapper = eventsScrollWrapper;
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const itemRect = eventItems[index].getBoundingClientRect();
+        const maxTarget = wrapper.scrollWidth - wrapper.clientWidth;
+        const target = Math.max(0, Math.min(
+            wrapper.scrollLeft + (itemRect.left - wrapperRect.left) -
+            (wrapper.clientWidth - itemRect.width) / 2,
+            maxTarget
+        ));
+
+        const start = wrapper.scrollLeft;
+        const delta = target - start;
+        if (Math.abs(delta) < 1) return;
+
+        // disable snapping during the animated scroll so the browser cannot cancel it
+        wrapper.style.scrollSnapType = 'none';
+        eventsScrollAnimating = true;
+
+        const duration = 500;
+        const startTime = performance.now();
+
+        function step(now) {
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            wrapper.scrollLeft = start + delta * eased;
+
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            } else {
+                wrapper.style.scrollSnapType = '';
+                eventsScrollAnimating = false;
+            }
         }
-    });
+
+        requestAnimationFrame(step);
+    }
+
+    function updateActiveEvent() {
+        const scrollLeft = eventsScrollWrapper.scrollLeft;
+        const wrapper = eventsScrollWrapper;
+        const wrapperRect = wrapper.getBoundingClientRect();
+        const maxTarget = wrapper.scrollWidth - wrapper.clientWidth;
+        let closest = 0;
+        let closestDistance = Infinity;
+
+        eventItems.forEach((item, index) => {
+            const itemRect = item.getBoundingClientRect();
+            const target = Math.max(0, Math.min(
+                scrollLeft + (itemRect.left - wrapperRect.left) -
+                (wrapperRect.width - itemRect.width) / 2,
+                maxTarget
+            ));
+            const distance = Math.abs(target - scrollLeft);
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closest = index;
+            }
+        });
+
+        currentEventIndex = closest;
+        eventDots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === closest);
+        });
+    }
+
+    eventsScrollWrapper.addEventListener('scroll', debounce(updateActiveEvent, 60), { passive: true });
+    eventsPrev.addEventListener('click', () => scrollToEvent(currentEventIndex - 1));
+    eventsNext.addEventListener('click', () => scrollToEvent(currentEventIndex + 1));
+}
+
+// ===================================
+// EVENTS SWIPE HINT (mobile)
+// ===================================
+
+const eventsSwipeHint = document.querySelector('.events-swipe-hint');
+
+if (eventsSwipeHint && eventsScrollWrapper) {
+    let hintShown = false;
+
+    const hintObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                if (!hintShown) {
+                    hintShown = true;
+                    eventsSwipeHint.classList.add('visible');
+                }
+            } else if (hintShown) {
+                eventsSwipeHint.classList.remove('visible');
+                hintObserver.disconnect();
+            }
+        });
+    }, { threshold: 0.4 });
+
+    hintObserver.observe(eventsScrollWrapper);
+
+    // hide the hint as soon as the user actually starts swiping
+    const hideSwipeHint = () => {
+        if (!hintShown) return;
+        eventsSwipeHint.classList.remove('visible');
+        hintObserver.disconnect();
+        eventsScrollWrapper.removeEventListener('scroll', handleHorizontalSwipe);
+        eventsScrollWrapper.removeEventListener('pointerdown', handleHorizontalSwipe);
+        eventsScrollWrapper.removeEventListener('touchstart', handleHorizontalSwipe);
+    };
+    const handleHorizontalSwipe = () => hideSwipeHint();
+    eventsScrollWrapper.addEventListener('scroll', handleHorizontalSwipe, { passive: true });
+    eventsScrollWrapper.addEventListener('pointerdown', handleHorizontalSwipe, { passive: true });
+    eventsScrollWrapper.addEventListener('touchstart', handleHorizontalSwipe, { passive: true });
 }
 
 // ===================================
@@ -389,7 +480,7 @@ gsap.from('.footer-share', {
 // ===================================
 
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+    const currentScroll = window.scrollY;
 
     // add stronger shadow when scrolled
     if (currentScroll > 100) {
@@ -473,8 +564,26 @@ window.addEventListener('resize', debouncedRefresh);
 
     const nativeBtn = document.getElementById('share-native');
     if (nativeBtn && navigator.share) {
+        if (window.matchMedia('(pointer: coarse)').matches) {
+            nativeBtn.classList.add('available');
+        }
+
         nativeBtn.addEventListener('click', function () {
-            navigator.share({ title: pageTitle, url: pageUrl }).catch(function () {});
+            // never invoke navigator.share() on fine-pointer (desktop) devices:
+            // desktop Chrome can kill the renderer there instead of rejecting,
+            // and no .catch() can recover from a killed process.
+            if (!navigator.share || !window.matchMedia('(pointer: coarse)').matches) {
+                nativeBtn.classList.remove('available');
+                nativeBtn.style.display = 'none';
+                return;
+            }
+            navigator.share({ title: pageTitle, url: pageUrl })
+                .catch(function (err) {
+                    if (err.name === 'NotAllowedError' || err.name === 'TypeError') {
+                        nativeBtn.classList.remove('available');
+                        nativeBtn.style.display = 'none';
+                    }
+                });
         });
     }
 
