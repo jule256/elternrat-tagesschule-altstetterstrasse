@@ -473,7 +473,7 @@ gsap.from('.footer-share', {
 // ===================================
 
 window.addEventListener('scroll', () => {
-    const currentScroll = window.pageYOffset;
+    const currentScroll = window.scrollY;
 
     // add stronger shadow when scrolled
     if (currentScroll > 100) {
@@ -560,6 +560,8 @@ window.addEventListener('resize', debouncedRefresh);
         nativeBtn.addEventListener('click', function () {
             navigator.share({ title: pageTitle, url: pageUrl }).catch(function () { });
         });
+    } else if (nativeBtn) {
+        nativeBtn.style.display = 'none';
     }
 
     const copyBtn = document.getElementById('share-copy');
