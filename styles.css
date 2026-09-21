@@ -27,7 +27,7 @@
     --primary-color-dark: #0000CC;
     --white: #FFFFFF;
     --text-color: #1A1A1A;
-    --text-gray: var(--text-gray);
+    --text-gray: #6B7280;
     --section-padding: 80px 0;
     --font-official: 'HelveticaNeueLTW01', "Helvetica Neue", Helvetica, Arial, sans-serif;
     --border-radius: 15px;
@@ -497,10 +497,6 @@ body {
     padding: 20px;
 }
 
-.calendar-container iframe {
-    display: block;
-}
-
 /* FullCalendar customization */
 #calendar {
     font-family: var(--font-official);
@@ -718,7 +714,6 @@ body {
 .events {
     padding: var(--section-padding);
     background: var(--primary-color);
-    position: relative;
 }
 
 .events .section-title,
@@ -881,7 +876,6 @@ body {
     position: relative;
     width: 100%;
     height: var(--event-grid-image-height-desktop);
-    cursor: pointer;
 }
 
 @media (max-width: 768px) {
