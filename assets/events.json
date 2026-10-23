@@ -65,6 +65,23 @@
     "borderColor": "#0F05A0"
   },
   {
+    "title": "Adventsingen",
+    "start": "2026-11-19T18:00:00",
+    "end": "2026-11-19T21:00:00",
+    "location": "Schulhaus Altstetterstrasse",
+    "backgroundColor": "#0F05A0",
+    "borderColor": "#0F05A0"
+  },
+  {
+    "title": "Elterncafé Lorito",
+    "start": "2027-04-14T14:00:00",
+    "end": "2027-04-14T16:00:00",
+    "location": "Schulhaus Altstetterstrasse",
+    "description": "Schulbildung stärken durch Spielen: Eltern und Kinder (Zyklus 1 = 1. KiGa - 2. Klasse) spielen und basteln zusammen",
+    "backgroundColor": "#0F05A0",
+    "borderColor": "#0F05A0"
+  },
+  {
     "title": "Kinoabend - DATE TO BE DEFINED",
     "start": "2025-11-11T19:00:00",
     "end": "2025-11-11T22:00:00",
